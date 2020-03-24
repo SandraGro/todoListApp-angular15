@@ -1,0 +1,36 @@
+<app-header></app-header>
+
+<div class="title-container">
+    <h1 class="title">{{ title }}</h1>
+</div>
+
+<div class="todo">
+    <form class="todo__form" (submit)="addTodo();">
+        <input type="text" placeholder="Add new item">
+    </form>
+    <ul class="todo__list">
+        <li *ngFor="let todoItem of list; let i= index">
+            <input type="checkbox" [id]="'todo-'+i" [(ngModel)]="todoItem.completed" (change)="toggleState(todoItem);">
+            <label class="toggle" [for]="'todo-'+i"></label>
+            <p (dblclick)="showEditField = true;" [hidden]="showEditField">
+                {{ todoItem.title }}
+            </p>
+            <div [hidden]="showEditField">
+                <input type="text" [(ngModel)]="todoItem.title" (blur)="updateTodo(todoItem, i); showEditField = false;"
+                    todo-autofocus="showEditField">
+            </div>
+            <a href="" (click)="removeTodo(todoItem, i);">
+                x
+            </a>
+        </li>
+    </ul>
+    <!-- <p class="todo__remaining">
+        <span ng-show="todo.getRemaining().length > 0">
+            You have {{todo.getRemaining().length}} of {{ todo.list.length }} items todo.
+        </span>
+        <span ng-show="todo.getRemaining().length === 0">
+            You are super productive!
+        </span>
+    </p> -->
+
+</div>
