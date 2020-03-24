@@ -22,7 +22,7 @@ export class AppComponent {
         completed: false
       },
       {
-        title: 'Tßhird item',
+        title: 'Third item',
         completed: false
       }];
   }

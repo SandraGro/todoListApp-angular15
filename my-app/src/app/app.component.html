@@ -10,12 +10,12 @@
     </form>
     <ul class="todo__list">
         <li *ngFor="let todoItem of list; let i= index">
-            <input type="checkbox" [id]="'todo-'+i" [(ngModel)]="todoItem.completed" (change)="toggleState(todoItem);">
+            <input type="checkbox" [id]="'todo-'+i" [(ngModel)]="todoItem.completed" (change)="toggleState(todoItem);"/>
             <label class="toggle" [for]="'todo-'+i"></label>
             <p (dblclick)="showEditField = true;" [hidden]="showEditField">
                 {{ todoItem.title }}
             </p>
-            <div [hidden]="showEditField">
+            <div [hidden]="!showEditField">
                 <input type="text" [(ngModel)]="todoItem.title" (blur)="updateTodo(todoItem, i); showEditField = false;"
                     todo-autofocus="showEditField">
             </div>
